@@ -26,7 +26,7 @@ const addNote = (title , body) => {
         if(filteredNote.length === 0){
             notes.push(note);
             saveNote(notes);
-            return note;
+            return note
         }
     }
 }
@@ -44,7 +44,11 @@ const listNotes = () => {
 
 const removeNote = (title) => {
     if(!title)console.log("Please add title");
-    else  console.log("Your note" , title , "is removed");
+    else {
+        const notes = fetchNotes();
+        const filteredNote = notes.filter((note ) => note.title !== title);
+        saveNote(filteredNote);
+    }
 }
 
 module.exports = {
