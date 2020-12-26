@@ -1,18 +1,23 @@
 let fs = require('fs');
+
+const fetchNotes = () => {
+    try{
+        const alreadyStringNotes = fs.readFileSync('notes.json')
+        return  JSON.parse(alreadyStringNotes);
+    }
+    catch(e){
+        return [];
+    }
+
+}
 const addNote = (title , body) => {
     if(!title)console.log("Please add title");
     else if(!body)console.log("Please add body");
     else {
-        let notes = [];
+        let notes = fetchNotes();
         const note = {
             title, body
         }
-        try{
-            const alreadyStringNotes = fs.readFileSync('notes.json')
-            const alreadyNotes = JSON.parse(alreadyStringNotes);
-            notes = alreadyNotes;
-        }
-        catch(e){}
         const filteredNote = notes.filter((note) => {return note.title === title})
         if(filteredNote.length === 0){
             notes.push(note);
