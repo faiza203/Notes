@@ -8,6 +8,6 @@ if(command){
     if(command === "ADD") index.addNote(yargs.argv.title , yargs.argv.body)
     else if(command === "READ") index.readNote(yargs.argv.title)
     else if(command === "LIST") index.listNotes()
-    else if(command === "REMOVE")console.log("Note is removed") 
+    else if(command === "REMOVE") index.removeNote(yargs.argv.title) 
     else console.log(`Your command ${yargs.argv._[0]} not recognize`) 
 }

@@ -14,11 +14,17 @@ const readNote = (title) => {
 }
 
 const listNotes = () => {
-        console.log("Your Notes is Here");
+    console.log("Your Notes is Here");
+}
+
+const removeNote = (title) => {
+    if(!title)console.log("Please add title");
+    else  console.log("Your note" , title , "is removed");
 }
 
 module.exports = {
     addNote,
     readNote,
-    listNotes
+    listNotes,
+    removeNote
 }
