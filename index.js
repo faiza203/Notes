@@ -6,6 +6,14 @@ const addNote = (title , body) => {
     }
 }
 
+const readNote = (title) => {
+    if(!title)console.log("Please add title");
+    else {
+        console.log("Your Note is Here");
+    }
+}
+
 module.exports = {
-    addNote
+    addNote,
+    readNote
 }
