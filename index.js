@@ -8,6 +8,10 @@ const fetchNotes = () => {
     catch(e){
         return [];
     }
+}
+
+const saveNote = (notes) => {
+    fs.writeFileSync('notes.json' , JSON.stringify(notes));
 
 }
 const addNote = (title , body) => {
@@ -21,7 +25,8 @@ const addNote = (title , body) => {
         const filteredNote = notes.filter((note) => {return note.title === title})
         if(filteredNote.length === 0){
             notes.push(note);
-            fs.writeFileSync('notes.json' , JSON.stringify(notes));
+            saveNote(notes);
+            return note;
         }
     }
 }
