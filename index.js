@@ -1,8 +1,23 @@
+let fs = require('fs');
 const addNote = (title , body) => {
     if(!title)console.log("Please add title");
     else if(!body)console.log("Please add body");
     else {
-        console.log("Adding Note" , title , body);
+        let notes = [];
+        const note = {
+            title, body
+        }
+        try{
+            const alreadyStringNotes = fs.readFileSync('notes.json')
+            const alreadyNotes = JSON.parse(alreadyStringNotes);
+            notes = alreadyNotes;
+        }
+        catch(e){}
+        const filteredNote = notes.filter((note) => {return note.title === title})
+        if(filteredNote.length === 0){
+            notes.push(note);
+            fs.writeFileSync('notes.json' , JSON.stringify(notes));
+        }
     }
 }
 
