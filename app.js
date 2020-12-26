@@ -1,27 +1,24 @@
 const yargs = require("yargs");
-
 const argv = yargs.argv;
-const command = argv._.length > 0 ? yargs.argv._[0].toUpperCase() : undefined;
+const command = argv._.length > 0 ? argv._[0].toUpperCase() : undefined;
 let index = require('./index');
 
-if(command){
 
+if(command){
     if(command === "ADD") {
- let  note = index.addNote(yargs.argv.title , yargs.argv.body)
+ let  note = index.addNote(argv.title , argv.body)
  if(note){ 
      console.log("Note is Added")
-     console.log(`Title :  ${note.title}`)
-    console.log(`Body : ${note.body}`)
+     index.logNote(note)
 }else {
     console.log("You have already note of this title")
 }}
 
  else if(command === "READ") {
- let note = index.readNote(yargs.argv.title)
+ let note = index.readNote(argv.title)
  if(note){ 
     console.log("Your Note is here")
-    console.log(`Title :  ${note.title}`)
-   console.log(`Body : ${note.body}`)
+    index.logNote(note)
 }else {
     console.log("I cant find Note of this title")
 }}
@@ -30,13 +27,12 @@ if(command){
      let notes =  index.listNotes()
      console.log(`Printing  ${notes.length} Notes : `);
      notes.forEach(note => {
-        console.log(`Title :  ${note.title} and  Body : ${note.body}`)
+        console.log(`Title is  ${note.title} and  Body is ${note.body}`)
           });
     }
  else if(command === "REMOVE") {
- let note = index.removeNote(yargs.argv.title);
- console.log('Title' , yargs.argv.title);
- console.log(note);
+index.removeNote(argv.title);
+ console.log('Note' , argv.title , "is removing");
  } 
- else console.log(`Your command ${yargs.argv._[0]} not recognize`) 
+ else console.log(`Your command ${argv._[0]} not recognize`) 
 }
