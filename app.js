@@ -3,6 +3,7 @@ const argv = yargs.argv;
 const command = argv._.length > 0 ? argv._[0].toUpperCase() : undefined;
 let index = require('./index');
 
+console.log("I am starting");
 
 if(command){
     if(command === "ADD") {
@@ -27,8 +28,8 @@ if(command){
      let notes =  index.listNotes()
      console.log(`Printing  ${notes.length} Notes : `);
      notes.forEach(note => {
-        console.log(`Title is  ${note.title} and  Body is ${note.body}`)
-          });
+              index.logNote(note)
+    });
     }
  else if(command === "REMOVE") {
 index.removeNote(argv.title);
