@@ -13,7 +13,12 @@ const readNote = (title) => {
     }
 }
 
+const listNotes = () => {
+        console.log("Your Notes is Here");
+}
+
 module.exports = {
     addNote,
-    readNote
+    readNote,
+    listNotes
 }
