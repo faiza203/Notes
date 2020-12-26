@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/faiza203/Notes/issues"
   },
-  "homepage": "https://github.com/faiza203/Notes#readme"
+  "homepage": "https://github.com/faiza203/Notes#readme",
+  "dependencies": {
+    "yargs": "^16.2.0"
+  }
 }
