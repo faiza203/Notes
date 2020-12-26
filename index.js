@@ -26,8 +26,6 @@ const addNote = (title , body) => {
             notes.push(note);
             saveNote(notes);
             return note
-        }else{
-            return "You have already note of this title" 
         }
     }
 }
@@ -35,12 +33,16 @@ const addNote = (title , body) => {
 const readNote = (title) => {
     if(!title)console.log("Please add title");
     else {
-        console.log("Your Note is Here");
-    }
+        const notes = fetchNotes();
+        const filteredNote = notes.filter((note) => note.title === title ? note : undefined)
+        return filteredNote[0]
+       }
+
 }
 
 const listNotes = () => {
-    console.log("Your Notes is Here");
+    const notes = fetchNotes();
+    return notes;
 }
 
 const removeNote = (title) => {
