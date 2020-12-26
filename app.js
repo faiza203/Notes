@@ -7,10 +7,13 @@ let index = require('./index');
 if(command){
     if(command === "ADD") {
         note = index.addNote(yargs.argv.title , yargs.argv.body)
-        note ? console.log(note) : "Note Title taken"
-    }
+           console.log(note);
+     }
     else if(command === "READ") index.readNote(yargs.argv.title)
     else if(command === "LIST") index.listNotes()
-    else if(command === "REMOVE") index.removeNote(yargs.argv.title) 
+    else if(command === "REMOVE") {
+        let note = index.removeNote(yargs.argv.title);
+        console.log(note);
+    } 
     else console.log(`Your command ${yargs.argv._[0]} not recognize`) 
 }

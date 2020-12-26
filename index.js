@@ -12,7 +12,6 @@ const fetchNotes = () => {
 
 const saveNote = (notes) => {
     fs.writeFileSync('notes.json' , JSON.stringify(notes));
-
 }
 const addNote = (title , body) => {
     if(!title)console.log("Please add title");
@@ -27,6 +26,8 @@ const addNote = (title , body) => {
             notes.push(note);
             saveNote(notes);
             return note
+        }else{
+            return "You have already note of this title" 
         }
     }
 }
@@ -48,6 +49,8 @@ const removeNote = (title) => {
         const notes = fetchNotes();
         const filteredNote = notes.filter((note ) => note.title !== title);
         saveNote(filteredNote);
+        let message = filteredNote.length !== notes.length ? "Note is removed" : "Note not found";
+        return message
     }
 }
 
