@@ -1,10 +1,22 @@
 const yargs = require("yargs");
-const argv = yargs.argv;
+const argv = yargs.command('add' , "Add a new Note", {
+    title : 
+    { 
+       describe : "Show title",
+       demand :true,
+       alias: "t",
+    },
+    body : 
+    { 
+       describe : "Show body",
+       demand :true,
+       alias: "b",
+    }
+})
+.help()
+.argv;
 const command = argv._.length > 0 ? argv._[0].toUpperCase() : undefined;
 let index = require('./index');
-
-console.log("I am starting");
-
 if(command){
     if(command === "ADD") {
  let  note = index.addNote(argv.title , argv.body)
@@ -35,5 +47,5 @@ if(command){
 index.removeNote(argv.title);
  console.log('Note' , argv.title , "is removing");
  } 
- else console.log(`Your command ${argv._[0]} not recognize`) 
+ else console.log(`Your command ${command._[0]} not recognize`) 
 }

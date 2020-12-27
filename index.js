@@ -60,6 +60,7 @@ const logNote = (note) => {
     console.log("-----");
     console.log(`Title : ${note.title}`)
    console.log(`Body : ${note.body}`)
+   console.log("-----");
 }
 module.exports = {
     addNote,
