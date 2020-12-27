@@ -14,9 +14,6 @@ const saveNote = (notes) => {
     fs.writeFileSync('notes.json' , JSON.stringify(notes));
 }
 const addNote = (title , body) => {
-    if(!title)console.log("Please add title");
-    else if(!body)console.log("Please add body");
-    else {
         let notes = fetchNotes();
         const note = {
             title, body
@@ -28,16 +25,11 @@ const addNote = (title , body) => {
             return note
         }
     }
-}
 
 const readNote = (title) => {
-    if(!title)console.log("Please add title");
-    else {
         const notes = fetchNotes();
         const filteredNote = notes.filter((note) => note.title === title ? note : undefined)
         return filteredNote[0]
-       }
-
 }
 
 const listNotes = () => {
@@ -46,7 +38,9 @@ const listNotes = () => {
 }
 
 const removeNote = (title) => {
-    if(!title)console.log("Please add title");
+    if(title === true){
+        console.log("Please add title");
+    return "" }
     else {
         const notes = fetchNotes();
         const filteredNote = notes.filter((note ) => note.title !== title);
