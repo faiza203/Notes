@@ -1,35 +1,35 @@
 let fs = require('fs');
 
 const fetchNotes = () => {
-    try{
+    try {
         const alreadyStringNotes = fs.readFileSync('notes.json')
-        return  JSON.parse(alreadyStringNotes);
-    }
-    catch(e){
+        return JSON.parse(alreadyStringNotes);
+    } catch (e) {
         return [];
     }
 }
 
 const saveNote = (notes) => {
-    fs.writeFileSync('notes.json' , JSON.stringify(notes));
+    fs.writeFileSync('notes.json', JSON.stringify(notes));
 }
-const addNote = (title , body) => {
-        let notes = fetchNotes();
-        const note = {
-            title, body
-        }
-        const filteredNote = notes.filter((note) => {return note.title === title})
-        if(filteredNote.length === 0){
-            notes.push(note);
-            saveNote(notes);
-            return note
-        }
+const addNote = (title, body) => {
+    let notes = fetchNotes();
+    const note = {
+        title,
+        body
     }
+    const filteredNote = notes.filter((note) => { return note.title === title })
+    if (filteredNote.length === 0) {
+        notes.push(note);
+        saveNote(notes);
+        return note
+    }
+}
 
 const readNote = (title) => {
-        const notes = fetchNotes();
-        const filteredNote = notes.filter((note) => note.title === title ? note : undefined)
-        return filteredNote[0]
+    const notes = fetchNotes();
+    const filteredNote = notes.filter((note) => note.title === title ? note : undefined)
+    return filteredNote[0]
 }
 
 const listNotes = () => {
@@ -38,12 +38,12 @@ const listNotes = () => {
 }
 
 const removeNote = (title) => {
-    if(title === true){
+    if (title === true) {
         console.log("Please add title");
-    return "" }
-    else {
+        return ""
+    } else {
         const notes = fetchNotes();
-        const filteredNote = notes.filter((note ) => note.title !== title);
+        const filteredNote = notes.filter((note) => note.title !== title);
         saveNote(filteredNote);
         let message = filteredNote.length !== notes.length ? "Note is removed" : "Note not found";
         return message
@@ -53,8 +53,8 @@ const removeNote = (title) => {
 const logNote = (note) => {
     console.log("-----");
     console.log(`Title : ${note.title}`)
-   console.log(`Body : ${note.body}`)
-   console.log("-----");
+    console.log(`Body : ${note.body}`)
+    console.log("-----");
 }
 module.exports = {
     addNote,
